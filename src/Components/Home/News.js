@@ -7,7 +7,6 @@ const News = () => {
     "শীতকালীন সকল সবজির উপর পেয়ে যাচ্ছেন ১২% পর্যন্ত ছাড়",
     "নতুন গ্রহকদের জন্য রয়েছে ৫০% ছাড়",
   ];
-  console.log(news);
   return (
     <div className="flex gap-3 mb-3">
       <div className="md:w-[120px] w-[150px] bg-red-600 text-white text-lg md:p-1 rounded-r-3xl">
