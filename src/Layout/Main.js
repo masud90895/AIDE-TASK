@@ -1,7 +1,5 @@
 import React from 'react';
-import Banner from '../Components/Home/Banner';
-import News from '../Components/Home/News';
-import Products from '../Components/Products/Products';
+import { Outlet } from 'react-router-dom';
 import Navbar from '../Components/Shared/Navbar';
 
 const Main = () => {
@@ -9,9 +7,7 @@ const Main = () => {
         <>
             <Navbar/>
             <hr />
-            <Banner />
-            <News/>
-            <Products/>
+            <Outlet/>
         </>
     );
 };
