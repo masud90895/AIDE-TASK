@@ -3,7 +3,7 @@ import React from 'react';
 const Banner = () => {
     return (
         <>
-      <div className="md:py-12 ">
+      <div >
         <div className=" bg-white relative  py-7">
           <div className="mx-auto bg-gray-200">
             <div className="lg:flex md:flex block justify-between items-center">
@@ -18,16 +18,17 @@ const Banner = () => {
                 The wait is over! Our big bag sale is here with upto 60% off on all items. <br /> Hurry up and fill your bags with your favorites at amazing prices. Secure Payment Option. Easy Return Policy.
                 </p>
               </div>
-              <div className="md:p-10 p-4">
+              <div className="md:p-10 p-4 w-[373px] h-[347px] ">
                 <img
-                  src="https://tuk-cdn.s3.amazonaws.com/can-uploader/ec2.png"
-                  className="w-full h-full" alt=''
+                  src="https://images.othoba.com/images/thumbs/0502192_oil_1258.jpeg"
+                  className="w-full h-full rounded-lg" alt=''
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
+      
     </>
 
     );
