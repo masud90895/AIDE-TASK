@@ -1,12 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { toast } from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Login = () => {
+  const {  login } = useContext(AuthContext);
+  const Navigate= useNavigate()
     const handleLogin=(e)=>{
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(email,password);
+        login(email, password)
+        .then((result) => {
+          console.log(result);
+          toast.success('login successful')
+          Navigate("/");
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.message);
+        });
     }
     return (
         <div className="flex items-center h-screen">
