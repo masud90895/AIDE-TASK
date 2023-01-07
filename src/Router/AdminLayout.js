@@ -5,6 +5,7 @@ import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
   BsClipboard,
+  BsMoon
   
 } from "react-icons/bs";
 import {AiOutlineDown} from "react-icons/ai";
@@ -179,6 +180,10 @@ const AdminLayout = () => {
                 </div>
                 <div className="w-1/2 hidden lg:flex">
                   <div className="w-full flex items-center pl-8 justify-end">
+                    
+                    <div className="h-full w-20 flex items-center justify-center  mr-4 cursor-pointer text-gray-600">
+                    <BsMoon className="font-bold text-xl"/>
+                    </div>
                     <div className="h-full w-20 flex items-center justify-center ">
                       <div className="relative cursor-pointer text-gray-600">
                         <svg
@@ -200,23 +205,11 @@ const AdminLayout = () => {
                         <div className="w-2 h-2 rounded-full bg-red-400  absolute inset-0 mt-1 mr-1 m-auto" />
                       </div>
                     </div>
-                    <div className="h-full w-20 flex items-center justify-center  mr-4 cursor-pointer text-gray-600">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="icon icon-tabler icon-tabler-messages"
-                        width={28}
-                        height={28}
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" />
-                        <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
-                        <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
-                      </svg>
+                    <div className="h-full w-20 flex items-center justify-center ">
+                      <div className="relative cursor-pointer text-gray-600">
+                        <img className="w-[40px] rounded-2xl" src="https://s3-alpha-sig.figma.com/img/e0f4/5fcb/04a5be3e74157ed546f35c0cb9e966aa?Expires=1673827200&Signature=ZTOsumFi61mxDEBR6a~EwpmDPhLNQPpgC5s7R~JyPycJfTrpJCk5Wnc3oyo~q8jXnqwEE65SWzi9p0nqhKRxKUPscWuAvk7c6JO5HWhRBPWmGh9hOpbVwjQuBWqp3wzBEipWeetO4nossuRRJoMcD1MAIp4JY7XG9dOvyrfOpwb-D0TOEm6HTF2Sip~pg-VfQvkxnGoxDU1TVOWA9Z-YloKR21Bs5L0O--GuetOtAmGiGC4jhIAOhJ4zq-Kryix9bSZRDD5lHHovHpuoDXDhAkIfHX~csI46IdKulPM1EfkFGw3cyPZ4bS98FqJibHDA2G2Bajgr0~Q2v0ta5ZgTgg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4" alt="" />
+                        <div className="w-2 h-2 rounded-full bg-[#56CA00]  absolute inset-0 mb-1 mr-1 m-auto" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -228,24 +221,56 @@ const AdminLayout = () => {
                 {show ? (
                   " "
                 ) : (
-                  <svg
-                    aria-label="Main Menu"
-                    aria-haspopup="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-menu cursor-pointer"
-                    width={30}
-                    height={30}
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <line x1={4} y1={8} x2={20} y2={8} />
-                    <line x1={4} y1={16} x2={20} y2={16} />
-                  </svg>
+                  <div className="lg:hidden flex w-full pr-6 lg:mx-[80px]">
+                <div className="w-1/2 h-full lg:hidden flex items-center ">
+                  {navShow ? (
+                    <BsFillArrowLeftCircleFill
+                      onClick={() => setNavShow(!navShow)}
+                      className="text-[#975EFE] text-2xl"
+                    />
+                  ) : (
+                    <BsFillArrowRightCircleFill
+                      onClick={() => setNavShow(!navShow)}
+                      className="text-[#975EFE] text-2xl"
+                    />
+                  )}
+                </div>
+                <div className=" lg:hidden flex">
+                  <div className="w-full flex items-center pl-8 justify-end">
+                    
+                    <div className="h-full w-20 flex items-center justify-center  cursor-pointer text-gray-600">
+                    <BsMoon className="font-bold text-xl"/>
+                    </div>
+                    <div className="h-full w-20 flex items-center justify-center ">
+                      <div className="relative cursor-pointer text-gray-600">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="icon icon-tabler icon-tabler-bell"
+                          width={28}
+                          height={28}
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" />
+                          <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                          <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                        </svg>
+                        <div className="w-2 h-2 rounded-full bg-red-400  absolute inset-0 mt-1 mr-1 m-auto" />
+                      </div>
+                    </div>
+                    <div className="h-full w-20 flex items-center justify-center ">
+                      <div className="relative cursor-pointer text-gray-600">
+                        <img className="w-[40px] rounded-2xl" src="https://s3-alpha-sig.figma.com/img/e0f4/5fcb/04a5be3e74157ed546f35c0cb9e966aa?Expires=1673827200&Signature=ZTOsumFi61mxDEBR6a~EwpmDPhLNQPpgC5s7R~JyPycJfTrpJCk5Wnc3oyo~q8jXnqwEE65SWzi9p0nqhKRxKUPscWuAvk7c6JO5HWhRBPWmGh9hOpbVwjQuBWqp3wzBEipWeetO4nossuRRJoMcD1MAIp4JY7XG9dOvyrfOpwb-D0TOEm6HTF2Sip~pg-VfQvkxnGoxDU1TVOWA9Z-YloKR21Bs5L0O--GuetOtAmGiGC4jhIAOhJ4zq-Kryix9bSZRDD5lHHovHpuoDXDhAkIfHX~csI46IdKulPM1EfkFGw3cyPZ4bS98FqJibHDA2G2Bajgr0~Q2v0ta5ZgTgg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4" alt="" />
+                        <div className="w-2 h-2 rounded-full bg-[#56CA00]  absolute inset-0 mb-1 mr-1 m-auto" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
                 )}
               </div>
             </nav>

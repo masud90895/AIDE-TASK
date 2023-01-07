@@ -1,4 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddProduct from "../Components/AdminPanel/AddProduct";
+import AddUser from "../Components/AdminPanel/AddUser";
+import AllUser from "../Components/AdminPanel/AllUser";
 import Login from "../Components/Authentication/Login";
 import Register from "../Components/Authentication/Register";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
@@ -29,7 +32,21 @@ const router = createBrowserRouter([
   {
     path : "/admin",
     element : <AdminLayout/>,
-    errorElement: <ErrorPage/>
+    errorElement: <ErrorPage/>,
+    children : [
+      {
+        path : "/admin",
+        element : <AllUser/>
+      },
+      {
+        path : "add-user",
+        element : <AddUser />,
+      },
+      {
+        path : "add-product",
+        element : <AddProduct />,
+      }
+    ]
   }
 ]);
 
