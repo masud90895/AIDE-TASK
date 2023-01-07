@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AddProduct from "../Components/AdminPanel/AddProduct";
 import AddUser from "../Components/AdminPanel/AddUser";
 import AllUser from "../Components/AdminPanel/AllUser";
+import EditUser from "../Components/AdminPanel/EditUser";
 import Login from "../Components/Authentication/Login";
 import Register from "../Components/Authentication/Register";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
       {
         path : "add-product",
         element : <AddProduct />,
+      },
+      {
+        path : "edit/:id",
+        loader : ({params})=> fetch(`http://localhost:5000/edit/${params.id}`),
+        element : <EditUser/>
       }
     ]
   }

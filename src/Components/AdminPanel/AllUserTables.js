@@ -113,7 +113,7 @@ const AllUserTables = () => {
             className="dropdown-content border z-50 border-gray-600 menu p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li className="hover:text-green-900 hover:bg-green-300">
-              <a>Edit</a>
+              <Link to={`edit/${row._id}`}>Edit</Link>
             </li>
             <li className="hover:text-red-900 hover:bg-red-300">
               <button onClick={() => handleDelete(row._id)}>Delete</button>
