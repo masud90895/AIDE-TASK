@@ -14,6 +14,12 @@ import Swal from "sweetalert2";
 const AllUserTables = () => {
   const [users, setUsers] = useState([]);
   const [reload, setReload] = useState(false);
+  const [hideUser, setHideUser] = useState(false);
+  const [hideEmail, setHideEmail] = useState(false);
+  const [hideRole, setHideRole] = useState(false);
+  const [hidePlan, setHidePlan] = useState(false);
+  const [hideStatus, setHideStatus] = useState(false);
+  const [hideAction, setHideAction] = useState(false);
   const handleDelete = (id) => {
     console.log(id);
     Swal.fire({
@@ -57,10 +63,12 @@ const AllUserTables = () => {
           </div>
         </div>
       ),
+      omit: hideUser,
     },
     {
       name: "EMAIL",
       selector: (row) => <h1 className="text-[14px]">{row.email}</h1>,
+      omit: hideEmail,
     },
     {
       name: "ROLE",
@@ -81,10 +89,12 @@ const AllUserTables = () => {
           <h1>{row.role}</h1>
         </div>
       ),
+      omit: hideRole,
     },
     {
       name: "PLAN",
       selector: (row) => <h1 className="text-[16px]">{row.plan}</h1>,
+      omit: hidePlan,
     },
     {
       name: "STATUS",
@@ -99,6 +109,7 @@ const AllUserTables = () => {
           {row.status}
         </h1>
       ),
+      omit: hideStatus,
     },
     {
       name: "ACTION",
@@ -124,8 +135,10 @@ const AllUserTables = () => {
       allowOverflow: true,
       button: true,
       width: "56px",
+      omit: hideAction,
     },
   ];
+  console.log(hideUser);
 
   useEffect(() => {
     fetch("http://localhost:5000/user")
@@ -149,7 +162,95 @@ const AllUserTables = () => {
             <BiExport className="text-xl" />
             PRINT
           </button>
-          <button className="btn btn-outline">SHOW/HIDE COLUMN</button>
+          {/* <button className="btn btn-outline">SHOW/HIDE COLUMN</button> */}
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-outline">
+              SHOW/HIDE COLUMN
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu border border-gray-600 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <div className="form-control p-0">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">USER</span>
+                    <input
+                      type="checkbox"
+                      checked={!hideUser}
+                      onChange={() => setHideUser(!hideUser)}
+                      className="checkbox ml-3"
+                    />
+                  </label>
+                </div>
+              </li>
+              <li>
+                <div className="form-control p-0">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">EMAIL</span>
+                    <input
+                      type="checkbox"
+                      checked={!hideEmail}
+                      onChange={() => setHideEmail(!hideEmail)}
+                      className="checkbox ml-3"
+                    />
+                  </label>
+                </div>
+              </li>
+              <li>
+                <div className="form-control p-0">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">ROLE</span>
+                    <input
+                      type="checkbox"
+                      checked={!hideRole}
+                      onChange={() => setHideRole(!hideRole)}
+                      className="checkbox ml-3"
+                    />
+                  </label>
+                </div>
+              </li>
+              <li>
+                <div className="form-control p-0">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">PLAN</span>
+                    <input
+                      type="checkbox"
+                      checked={!hidePlan}
+                      onChange={() => setHidePlan(!hidePlan)}
+                      className="checkbox ml-3"
+                    />
+                  </label>
+                </div>
+              </li>
+              <li>
+                <div className="form-control p-0">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">STATUS</span>
+                    <input
+                      type="checkbox"
+                      checked={!hideStatus}
+                      onChange={() => setHideStatus(!hideStatus)}
+                      className="checkbox ml-3"
+                    />
+                  </label>
+                </div>
+              </li>
+              <li>
+                <div className="form-control p-0 text-center">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">ACTION</span>
+                    <input
+                      type="checkbox"
+                      checked={!hideAction}
+                      onChange={() => setHideAction(!hideAction)}
+                      className="checkbox ml-3"
+                    />
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="flex justify-between gap-3">
           <input
