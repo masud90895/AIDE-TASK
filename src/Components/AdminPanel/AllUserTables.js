@@ -5,12 +5,39 @@ import { GiPanzerfaust } from "react-icons/gi";
 import { AiTwotoneSetting } from "react-icons/ai";
 import { TbRotateClockwise2 } from "react-icons/tb";
 import { RxAvatar } from "react-icons/rx";
-import {HiOutlineDotsVertical} from "react-icons/hi"
-import {BiExport} from "react-icons/bi"
+import { HiOutlineDotsVertical } from "react-icons/hi";
+import { BiExport } from "react-icons/bi";
 import { Menu, Transition } from "@headlessui/react";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AllUserTables = () => {
   const [users, setUsers] = useState([]);
+  const [reload, setReload] = useState(false);
+  const handleDelete = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to delete this",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/user/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            setReload(!reload);
+          });
+      }
+    });
+  };
 
   const columns = [
     {
@@ -30,12 +57,10 @@ const AllUserTables = () => {
           </div>
         </div>
       ),
-     
     },
     {
       name: "EMAIL",
       selector: (row) => <h1 className="text-[14px]">{row.email}</h1>,
-      
     },
     {
       name: "ROLE",
@@ -78,20 +103,20 @@ const AllUserTables = () => {
     {
       name: "ACTION",
 
-      cell: (row,i) => (
-        <div className="dropdown dropdown-left">
+      cell: (row, i) => (
+        <div className="dropdown dropdown-top dropdown-left">
           <label tabIndex={0}>
-            <HiOutlineDotsVertical/>
+            <HiOutlineDotsVertical />
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content border border-gray-600 menu p-2 shadow bg-base-100 rounded-box w-52"
+            className="dropdown-content border z-50 border-gray-600 menu p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li className="hover:text-green-900 hover:bg-green-300">
               <a>Edit</a>
             </li>
             <li className="hover:text-red-900 hover:bg-red-300">
-              <button>Delete</button>
+              <button onClick={() => handleDelete(row._id)}>Delete</button>
             </li>
           </ul>
         </div>
@@ -107,20 +132,37 @@ const AllUserTables = () => {
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((error) => console.log(error));
-  }, []);
+  }, [reload]);
   return (
     <div className="bg-white shadow-lg  rounded-xl">
-    <div  className="md:flex justify-between bg-white pt-5 px-4">
-        <div  className="md:flex justify-between gap-4"><button className="btn btn-outline flex items-center gap-1"><BiExport className="text-xl"/>PDF</button>
-        <button className="btn btn-outline flex items-center gap-1"><BiExport className="text-xl"/>EXCEL</button>
-        <button  className="btn btn-outline flex items-center gap-1"><BiExport className="text-xl"/>PRINT</button>
-        <button className="btn btn-outline">SHOW/HIDE COLUMN</button></div>
-        <div className="flex justify-between gap-3">
-            <input type="text" className="input input-bordered w-full max-w-xs" placeholder="Search Invoice" />
-            <button className="btn bg-[#9155FD] border-none">ADD USER</button>
+      <div className="md:flex justify-between bg-white pt-5 px-4">
+        <div className="md:flex justify-between gap-4">
+          <button className="btn btn-outline flex items-center gap-1">
+            <BiExport className="text-xl" />
+            PDF
+          </button>
+          <button className="btn btn-outline flex items-center gap-1">
+            <BiExport className="text-xl" />
+            EXCEL
+          </button>
+          <button className="btn btn-outline flex items-center gap-1">
+            <BiExport className="text-xl" />
+            PRINT
+          </button>
+          <button className="btn btn-outline">SHOW/HIDE COLUMN</button>
         </div>
-    </div>
-    <DataTable columns={columns} data={users} pagination highlightOnHover />
+        <div className="flex justify-between gap-3">
+          <input
+            type="text"
+            className="input input-bordered w-full max-w-xs "
+            placeholder="Search Invoice"
+          />
+          <Link to="add-user" className="btn bg-[#9155FD] border-none">
+            <button>ADD USER</button>
+          </Link>
+        </div>
+      </div>
+      <DataTable columns={columns} data={users} pagination highlightOnHover />
     </div>
   );
 };
