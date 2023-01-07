@@ -148,7 +148,7 @@ const AllUserTables = () => {
   }, [reload]);
   return (
     <div className="bg-white shadow-lg  rounded-xl">
-      <div className="md:flex justify-between bg-white pt-5 px-4">
+      <div className="md:flex justify-between bg-white pt-5 px-4 print:hidden">
         <div className="md:flex justify-between gap-4">
           <button className="btn btn-outline flex items-center gap-1">
             <BiExport className="text-xl" />
@@ -158,7 +158,10 @@ const AllUserTables = () => {
             <BiExport className="text-xl" />
             EXCEL
           </button>
-          <button className="btn btn-outline flex items-center gap-1">
+          <button
+            onClick={() => window.print()}
+            className="btn btn-outline flex items-center gap-1"
+          >
             <BiExport className="text-xl" />
             PRINT
           </button>

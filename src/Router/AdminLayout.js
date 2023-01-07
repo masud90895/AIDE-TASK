@@ -29,11 +29,11 @@ const AdminLayout = () => {
         <div className="flex flex-no-wrap">
           {/* Sidebar starts */}
           <div
-            className={`absolute  lg:relative w-64 h-screen  bg-[#F4F5FA] hidden  ${
+            className={`absolute print:hidden lg:relative w-64 h-screen  bg-[#F4F5FA] hidden  ${
               navShow ? "lg:block" : "lg:hidden"
             }`}
           >
-            <aside className=" fixed z-10 top-0 pb-3 px-6 w-full flex flex-col  h-screen  bg-[#F4F5FA] transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+            <aside className=" fixed print:hidden z-10 top-0 pb-3 px-6 w-full flex flex-col  h-screen  bg-[#F4F5FA] transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
               <div className="flex items-center justify-between text-xl">
                 <Link to="/" className="font-bold  py-4">
                   <div title="home">ADMIN PANEL</div>
@@ -90,12 +90,12 @@ const AdminLayout = () => {
           <div
             className={
               show
-                ? "w-full h-full absolute z-40  transform  translate-x-0 "
-                : "   w-full h-full absolute z-40  transform -translate-x-full"
+                ? "w-full print:hidden h-full absolute z-40  transform  translate-x-0 "
+                : "   w-full print:hidden h-full absolute z-40  transform -translate-x-full"
             }
             id="mobile-nav"
           >
-            <div className="bg-gray-800 opacity-50 absolute h-full w-full lg:hidden" />
+            <div className="bg-gray-800 print:hidden opacity-50 absolute h-full w-full lg:hidden" />
             <div className="absolute z-40 sm:relative w-64 md:w-96  pb-4 bg-[#F4F5FA] lg:hidden transition duration-150 ease-in-out h-full">
               <aside className="   px-6 w-full flex flex-col justify-between h-screen  bg-[#F4F5FA] transition duration-300  lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
                 <div>
@@ -163,7 +163,7 @@ const AdminLayout = () => {
           {/* Sidebar ends */}
           <div className="w-full">
             {/* Navigation starts */}
-            <nav className="h-16 flex items-center lg:items-stretch justify-end lg:justify-between bg-[#F4F5FA]   z-10 ">
+            <nav className="h-16 print:hidden flex items-center lg:items-stretch justify-end lg:justify-between bg-[#F4F5FA]   z-10 ">
               <div className="hidden lg:flex w-full pr-6 lg:mx-[80px]">
                 <div className="w-1/2 h-full hidden lg:flex items-center ">
                   {navShow ? (
