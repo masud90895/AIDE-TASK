@@ -44,7 +44,7 @@ const Navbar = () => {
         </NavLink>
       )}
 
-      {user?.email || user?.uid ? (
+      {(user?.email || user?.uid) ? (
         <button onClick={handleLogOut} className="hover:underline">
           Logout
         </button>
