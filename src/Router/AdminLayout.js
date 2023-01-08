@@ -16,11 +16,8 @@ import { Menu} from "@headlessui/react";
 import { toast } from "react-hot-toast";
 
 const AdminLayout = () => {
-  const { user, logout } = useContext(AuthContext);
   const [show, setShow] = useState(false);
   const [navShow, setNavShow] = useState(true);
-  const [isList, setIsList] = useState(false);
-  const [isSubList, setIsSubList] = useState(3);
 
 
   return (
@@ -182,7 +179,7 @@ const AdminLayout = () => {
                   <div className="w-full flex items-center pl-8 justify-end">
                     
                     <div className="h-full w-20 flex items-center justify-center  mr-4 cursor-pointer text-gray-600">
-                    <BsMoon className="font-bold text-xl"/>
+                    <BsMoon onClick={()=>toast.error("this feature not available right now")} className="font-bold text-xl"/>
                     </div>
                     <div className="h-full w-20 flex items-center justify-center ">
                       <div className="relative cursor-pointer text-gray-600">
@@ -205,7 +202,7 @@ const AdminLayout = () => {
                         <div className="w-2 h-2 rounded-full bg-red-400  absolute inset-0 mt-1 mr-1 m-auto" />
                       </div>
                     </div>
-                    <div className="h-full w-20 flex items-center justify-center ">
+                    <div  className="h-full w-20 flex items-center justify-center ">
                       <div className="relative cursor-pointer text-gray-600">
                         <img className="w-[40px] rounded-2xl" src="https://s3-alpha-sig.figma.com/img/e0f4/5fcb/04a5be3e74157ed546f35c0cb9e966aa?Expires=1673827200&Signature=ZTOsumFi61mxDEBR6a~EwpmDPhLNQPpgC5s7R~JyPycJfTrpJCk5Wnc3oyo~q8jXnqwEE65SWzi9p0nqhKRxKUPscWuAvk7c6JO5HWhRBPWmGh9hOpbVwjQuBWqp3wzBEipWeetO4nossuRRJoMcD1MAIp4JY7XG9dOvyrfOpwb-D0TOEm6HTF2Sip~pg-VfQvkxnGoxDU1TVOWA9Z-YloKR21Bs5L0O--GuetOtAmGiGC4jhIAOhJ4zq-Kryix9bSZRDD5lHHovHpuoDXDhAkIfHX~csI46IdKulPM1EfkFGw3cyPZ4bS98FqJibHDA2G2Bajgr0~Q2v0ta5ZgTgg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4" alt="" />
                         <div className="w-2 h-2 rounded-full bg-[#56CA00]  absolute inset-0 mb-1 mr-1 m-auto" />

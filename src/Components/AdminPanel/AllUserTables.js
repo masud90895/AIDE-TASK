@@ -7,11 +7,12 @@ import { TbRotateClockwise2 } from "react-icons/tb";
 import { RxAvatar } from "react-icons/rx";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { BiExport } from "react-icons/bi";
-import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import Pdf from "react-to-pdf";
+import ReactHtmlTableToExcel from "react-html-table-to-excel";
 
-const AllUserTables = () => {
+const AllUserTables = ({ chackRef, options ,nextRef}) => {
   const [users, setUsers] = useState([]);
   const [reload, setReload] = useState(false);
   const [hideUser, setHideUser] = useState(false);
@@ -138,7 +139,6 @@ const AllUserTables = () => {
       omit: hideAction,
     },
   ];
-  console.log(hideUser);
 
   useEffect(() => {
     fetch("http://localhost:5000/user")
@@ -146,18 +146,55 @@ const AllUserTables = () => {
       .then((data) => setUsers(data))
       .catch((error) => console.log(error));
   }, [reload]);
+
   return (
     <div className="bg-white shadow-lg  rounded-xl">
-      <div className="md:flex justify-between bg-white pt-5 px-4 print:hidden">
+      <div
+        className={`md:flex justify-between bg-white pt-5 px-4 print:hidden`}
+      >
         <div className="md:flex justify-between gap-4">
-          <button className="btn btn-outline flex items-center gap-1">
+          {/* <button className="btn btn-outline flex items-center gap-1">
             <BiExport className="text-xl" />
             PDF
-          </button>
-          <button className="btn btn-outline flex items-center gap-1">
+          </button> */}
+          <div>
+            <Pdf
+              targetRef={chackRef}/* {nextRef} */
+              filename="All-User.pdf"
+              options={options}
+              x={0.5}
+              y={0.5}
+              scale={0.8}
+            >
+              {({ toPdf }) => (
+                <button
+                  className="btn btn-outline print:hidden flex items-center gap-1"
+                  onClick={toPdf}
+                >
+                  <BiExport className="text-xl" />
+                  PDF
+                </button>
+              )}
+            </Pdf>
+          </div>
+          {/* <button className="btn btn-outline flex items-center gap-1">
             <BiExport className="text-xl" />
             EXCEL
-          </button>
+          </button> */}
+          <ReactHtmlTableToExcel
+            id="test-table-xls-button"
+            className="download-table-xls-button"
+            table="table-to-xls"
+            filename="AllUser"
+            sheet="tablexls"
+            buttonText={
+              <button className=" btn btn-outline flex items-center gap-1">
+                <BiExport className="text-xl" />
+                EXCEL
+              </button>
+            }
+          />
+
           <button
             onClick={() => window.print()}
             className="btn btn-outline flex items-center gap-1"
@@ -266,7 +303,51 @@ const AllUserTables = () => {
           </Link>
         </div>
       </div>
-      <DataTable columns={columns} data={users} pagination highlightOnHover />
+      <div ref={chackRef}>
+        <DataTable columns={columns} data={users} pagination highlightOnHover />
+      </div>
+      {/* table export xls  */}
+      <div className="hidden">
+        <h1 className="text-3xl text-[#975EFE]">All User</h1>
+        <div className="overflow-x-auto">
+          <table id="table-to-xls" className="table w-full">
+            <thead>
+              <tr>
+                <th>USER</th>
+                <th>EMAIL</th>
+                <th>ROLE</th>
+                <th>PLAN</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user?._id}>
+                  <th>
+                    <div className="flex gap-2 items-center">
+                      <img
+                        width={34}
+                        height={34}
+                        className="rounded-2xl"
+                        src={user.image}
+                        alt=""
+                      />{" "}
+                      <div>
+                        <h1 className="text-[16px]">{user.name}</h1>
+                        <h1 className="text-gray-600">@{user.userName}</h1>
+                      </div>
+                    </div>
+                  </th>
+                  <td>{user?.email}</td>
+                  <td>{user?.role}</td>
+                  <td>{user?.plan}</td>
+                  <td>{user?.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };

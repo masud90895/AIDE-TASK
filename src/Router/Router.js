@@ -7,6 +7,7 @@ import Login from "../Components/Authentication/Login";
 import Register from "../Components/Authentication/Register";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import Home from "../Components/Home/Home";
+import MyCart from "../Components/MyCart/MyCart";
 import Main from "../Layout/Main";
 import AdminLayout from "./AdminLayout";
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      {
+        path : "/cart",
+        element : <MyCart/>,
+      }
     ],
   },
   {

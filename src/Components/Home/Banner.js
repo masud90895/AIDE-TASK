@@ -1,37 +1,31 @@
-import React from 'react';
+import React from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import img1 from "../../Assist/slider1.webp";
+import img2 from "../../Assist/slider2.webp";
+import img3 from "../../Assist/slider3.webp";
+import img4 from "../../Assist/slider4.webp";
+import img5 from "../../Assist/slider5.webp";
+import img6 from "../../Assist/slider6.webp";
+import img7 from "../../Assist/slider7.webp";
+import img8 from "../../Assist/slider8.webp";
 
 const Banner = () => {
-    return (
-        <>
-      <div >
-        <div className=" bg-white relative  py-7">
-          <div className="mx-auto bg-gray-200">
-            <div className="lg:flex md:flex block justify-between items-center">
-              <div className="md:p-10 p-4">
-                <p className="text-base leading-none text-gray-800">
-                  Save upto 60%
-                </p>
-                <p className="text-3xl font-semibold leading-9 text-gray-800 py-4">
-                  Winter Sale
-                </p>
-                <p className="text-base leading-normal text-gray-600">
-                The wait is over! Our big bag sale is here with upto 60% off on all items. <br /> Hurry up and fill your bags with your favorites at amazing prices. Secure Payment Option. Easy Return Policy.
-                </p>
-              </div>
-              <div className="md:p-10 p-4 w-[373px] h-[347px] ">
-                <img
-                  src="https://images.othoba.com/images/thumbs/0502192_oil_1258.jpeg"
-                  className="w-full h-full rounded-lg" alt=''
-                />
-              </div>
-            </div>
-          </div>
+  const slider = [img1, img2, img3, img4, img5, img6, img7, img8];
+  return (
+    <Carousel
+      showThumbs={false}
+      autoPlay
+      infiniteLoop
+      className="  my-10 mx-auto"
+    >
+      {slider?.map((sl, i) => (
+        <div className="lg:h-[500px]" key={i}>
+          <img loading="lazy" className="h-full" src={sl} alt="" />
         </div>
-      </div>
-      
-    </>
-
-    );
+      ))}
+    </Carousel>
+  );
 };
 
 export default Banner;
