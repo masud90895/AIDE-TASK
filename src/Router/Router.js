@@ -30,35 +30,36 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path : "/cart",
-        element : <MyCart/>,
-      }
+        path: "/cart",
+        element: <MyCart />,
+      },
     ],
   },
   {
-    path : "/admin",
-    element : <AdminLayout/>,
-    errorElement: <ErrorPage/>,
-    children : [
+    path: "/admin",
+    element: <AdminLayout />,
+    errorElement: <ErrorPage />,
+    children: [
       {
-        path : "/admin",
-        element : <AllUser/>
+        path: "/admin",
+        element: <AllUser />,
       },
       {
-        path : "add-user",
-        element : <AddUser />,
+        path: "add-user",
+        element: <AddUser />,
       },
       {
-        path : "add-product",
-        element : <AddProduct />,
+        path: "add-product",
+        element: <AddProduct />,
       },
       {
-        path : "edit/:id",
-        loader : ({params})=> fetch(`http://localhost:5000/edit/${params.id}`),
-        element : <EditUser/>
-      }
-    ]
-  }
+        path: "edit/:id",
+        loader: ({ params }) =>
+          fetch(`https://aide-server-gray.vercel.app/edit/${params.id}`),
+        element: <EditUser />,
+      },
+    ],
+  },
 ]);
 
 export default router;

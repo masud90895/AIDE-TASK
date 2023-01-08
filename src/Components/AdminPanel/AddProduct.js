@@ -26,7 +26,7 @@ const AddProduct = () => {
           image: data?.data?.display_url,
         };
         if (data?.data?.display_url) {
-          fetch("http://localhost:5000/products", {
+          fetch("https://aide-server-gray.vercel.app/products", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -122,7 +122,7 @@ const AddProduct = () => {
                       </div>
                     </div>
                   </div>
-      
+
                   <hr className="h-[1px] bg-gray-100 my-3" />
                   <button className="bg-purple-700 md:ml-6 rounded  hover:bg-purple-600 transform duration-300 ease-in-out text-sm font-medium px-6 py-4 text-white lg:max-w-[144px] w-full ">
                     Add Product

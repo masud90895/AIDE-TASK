@@ -35,7 +35,7 @@ const AddUser = () => {
           image: data?.data?.display_url,
         };
         if (data?.data?.display_url) {
-          fetch("http://localhost:5000/user", {
+          fetch("https://aide-server-gray.vercel.app/user", {
             method: "POST",
             headers: {
               "content-type": "application/json",

@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 import Pdf from "react-to-pdf";
 import ReactHtmlTableToExcel from "react-html-table-to-excel";
 
-const AllUserTables = ({ chackRef, options ,nextRef}) => {
+const AllUserTables = ({ chackRef, options, nextRef }) => {
   const [users, setUsers] = useState([]);
   const [reload, setReload] = useState(false);
   const [hideUser, setHideUser] = useState(false);
@@ -21,6 +21,7 @@ const AllUserTables = ({ chackRef, options ,nextRef}) => {
   const [hidePlan, setHidePlan] = useState(false);
   const [hideStatus, setHideStatus] = useState(false);
   const [hideAction, setHideAction] = useState(false);
+  const [pending, setPending] = useState(true);
   const handleDelete = (id) => {
     console.log(id);
     Swal.fire({
@@ -33,7 +34,7 @@ const AllUserTables = ({ chackRef, options ,nextRef}) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/user/${id}`, {
+        fetch(`https://aide-server-gray.vercel.app/user/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -141,9 +142,12 @@ const AllUserTables = ({ chackRef, options ,nextRef}) => {
   ];
 
   useEffect(() => {
-    fetch("http://localhost:5000/user")
+    fetch("https://aide-server-gray.vercel.app/user")
       .then((response) => response.json())
-      .then((data) => setUsers(data))
+      .then((data) => {
+        setUsers(data);
+        setPending(false);
+      })
       .catch((error) => console.log(error));
   }, [reload]);
 
@@ -159,7 +163,7 @@ const AllUserTables = ({ chackRef, options ,nextRef}) => {
           </button> */}
           <div>
             <Pdf
-              targetRef={chackRef}/* {nextRef} */
+              targetRef={chackRef} /* {nextRef} */
               filename="All-User.pdf"
               options={options}
               x={0.5}
@@ -304,7 +308,15 @@ const AllUserTables = ({ chackRef, options ,nextRef}) => {
         </div>
       </div>
       <div ref={chackRef}>
-        <DataTable columns={columns} data={users} pagination highlightOnHover />
+        <DataTable
+          columns={columns}
+          data={users}
+          pagination
+          highlightOnHover
+          fixedHeader
+          fixedHeaderScrollHeight="400px"
+          progressPending={pending}
+        />
       </div>
       {/* table export xls  */}
       <div className="hidden">

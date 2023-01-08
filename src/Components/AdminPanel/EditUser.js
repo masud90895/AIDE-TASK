@@ -42,7 +42,7 @@ const EditUser = () => {
           };
           console.log(userData);
           if (data?.data?.display_url) {
-            fetch(`http://localhost:5000/edit/${user?._id}`, {
+            fetch(`https://aide-server-gray.vercel.app/edit/${user?._id}`, {
               method: "PUT",
               headers: {
                 "content-type": "application/json",
@@ -71,7 +71,7 @@ const EditUser = () => {
       };
       console.log(userDitail);
 
-      fetch(`http://localhost:5000/edit/${user?._id}`, {
+      fetch(`https://aide-server-gray.vercel.app/edit/${user?._id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

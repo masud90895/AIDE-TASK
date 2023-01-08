@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Product = ({ product }) => {
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const [quantity, setQuantity] = useState(1);
   const [showQuantity, setShowQuantity] = useState(false);
   const handleQuantityIncress = () => {
@@ -23,14 +23,14 @@ const Product = ({ product }) => {
       image: products?.image,
       price: products?.price,
       quantity: quantity,
-      email: user?.email
+      email: user?.email,
     };
 
-    if(!user?.email){
+    if (!user?.email) {
       toast.error("You must login to add to cart");
       return;
     }
-    fetch("http://localhost:5000/cart", {
+    fetch("https://aide-server-gray.vercel.app/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,12 +38,12 @@ const Product = ({ product }) => {
       body: JSON.stringify(cartData),
     })
       .then((response) => response.json())
-      .then((data) =>{ 
-        console.log(data)
-        setShowQuantity(false)
-        setQuantity(1)
+      .then((data) => {
+        console.log(data);
+        setShowQuantity(false);
+        setQuantity(1);
         toast.success("Product Added on your Cart");
-    })
+      })
       .catch((error) => console.log(error));
   };
 
@@ -58,7 +58,7 @@ const Product = ({ product }) => {
         </h1>
 
         <p className="text-xl">
-          Price : <span>${product.price }</span>
+          Price : <span>${product.price}</span>
         </p>
       </div>
 
