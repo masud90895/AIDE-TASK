@@ -19,7 +19,7 @@ const Allusers = () => {
   }, []);
   return (
     <div>
-      <div ref={nextRef} className="mb-10">
+      <div ref={nextRef} className="mb-10 ">
         <h1 className="text-[#975EFE] text-3xl">All users</h1>
       </div>
       {users?.length > 0 ? (

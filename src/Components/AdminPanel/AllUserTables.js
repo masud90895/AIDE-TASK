@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Pdf from "react-to-pdf";
 import ReactHtmlTableToExcel from "react-html-table-to-excel";
+import "./Example.css";
 
 const AllUserTables = ({ chackRef, options, nextRef }) => {
   const [users, setUsers] = useState([]);
@@ -117,7 +118,7 @@ const AllUserTables = ({ chackRef, options, nextRef }) => {
       name: "ACTION",
 
       cell: (row, i) => (
-        <div className="dropdown dropdown-top dropdown-left">
+        <div className="dropdown dropdown-top dropdown-left print:hidden ">
           <label tabIndex={0}>
             <HiOutlineDotsVertical />
           </label>
@@ -181,10 +182,6 @@ const AllUserTables = ({ chackRef, options, nextRef }) => {
               )}
             </Pdf>
           </div>
-          {/* <button className="btn btn-outline flex items-center gap-1">
-            <BiExport className="text-xl" />
-            EXCEL
-          </button> */}
           <ReactHtmlTableToExcel
             id="test-table-xls-button"
             className="download-table-xls-button"
@@ -200,7 +197,9 @@ const AllUserTables = ({ chackRef, options, nextRef }) => {
           />
 
           <button
-            onClick={() => window.print()}
+            onClick={() => {
+              window.print();
+            }}
             className="btn btn-outline flex items-center gap-1"
           >
             <BiExport className="text-xl" />
@@ -308,13 +307,17 @@ const AllUserTables = ({ chackRef, options, nextRef }) => {
         </div>
       </div>
       <div ref={chackRef}>
+        <div className="hidden">
+          <h1>My Name Is Masud</h1>
+          <h2>I created this table</h2>
+        </div>
         <DataTable
           columns={columns}
           data={users}
           pagination
           highlightOnHover
           fixedHeader
-          fixedHeaderScrollHeight="400px"
+          fixedHeaderScrollHeight="800px"
           progressPending={pending}
         />
       </div>
@@ -325,7 +328,13 @@ const AllUserTables = ({ chackRef, options, nextRef }) => {
           <table id="table-to-xls" className="table w-full">
             <thead>
               <tr>
-                <th>USER</th>
+                <th>
+                  <h3>User Panel</h3>
+                </th>
+              </tr>
+              <tr>
+                <th>Name</th>
+                <th>User Name</th>
                 <th>EMAIL</th>
                 <th>ROLE</th>
                 <th>PLAN</th>
@@ -346,10 +355,10 @@ const AllUserTables = ({ chackRef, options, nextRef }) => {
                       />{" "}
                       <div>
                         <h1 className="text-[16px]">{user.name}</h1>
-                        <h1 className="text-gray-600">@{user.userName}</h1>
                       </div>
                     </div>
                   </th>
+                  <th>@{user.userName}</th>
                   <td>{user?.email}</td>
                   <td>{user?.role}</td>
                   <td>{user?.plan}</td>
